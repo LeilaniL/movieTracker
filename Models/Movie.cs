@@ -8,10 +8,10 @@ namespace objects_demo
     public string Name { get; set; }
     public string Director { get; set; }
     public string Genre { get; set; }
-
     public bool Seen { get; set; }
     public int Rating { get; set; }
     private static List<Movie> Favorites = new List<Movie> { };
+
     public Movie(string movieName)
     {
       Name = movieName;
@@ -20,6 +20,7 @@ namespace objects_demo
       Seen = false;
       Rating = 0;
     }
+
     public override string ToString()
     {
       Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -32,6 +33,7 @@ namespace objects_demo
         return Name;
       }
     }
+
     public void RateMovie(string rating)
     {
       Rating = int.Parse(rating);
