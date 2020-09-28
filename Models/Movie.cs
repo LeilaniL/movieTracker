@@ -32,5 +32,15 @@ namespace objects_demo
         return Name;
       }
     }
+    public void RateMovie(string rating)
+    {
+      Rating = int.Parse(rating);
+      Seen = true;
+      if (Rating >= 4)
+      {
+        Favorites.Add(this);
+      }
+      Console.WriteLine("{0} has a rating of {1}", this.Name, this.Rating);
+    }
   }
 }

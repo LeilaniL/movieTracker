@@ -20,6 +20,9 @@ namespace objects_demo
       {
         Console.WriteLine(movie);
       }
+      Console.ResetColor();
+      Console.WriteLine("Rate your new movie! 1 -5");
+      newMovie.RateMovie(Console.ReadLine());
     }
   }
 }
