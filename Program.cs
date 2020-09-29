@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ObjectsDemo
 {
@@ -16,7 +17,9 @@ namespace ObjectsDemo
       string knowsDirector = Console.ReadLine().ToUpper();
       if (knowsDirector == "Y" | knowsDirector == "YES")
       {
-        Console.WriteLine("Good for you!");
+        Console.WriteLine("Great! Enter their name:");
+        newMovie.Director = Console.ReadLine();
+        Console.WriteLine(newMovie);
       }
       else
       {
@@ -24,11 +27,7 @@ namespace ObjectsDemo
       }
       Console.ResetColor();
       AllMovies.Add(newMovie);
-      Program.Menu();
-    }
-    void RateMovie(string inputRating)
-    {
-
+      Menu();
     }
     private static void ViewList()
     {
@@ -38,8 +37,29 @@ namespace ObjectsDemo
       {
         Console.WriteLine(film);
       }
-      Program.Menu();
+      Menu();
     }
+
+    private static void RateMovie()
+    {
+      Movie selectedFilm = null;
+      Console.ForegroundColor = ConsoleColor.DarkYellow;
+      Console.WriteLine("What movie are you rating?");
+      Movie inputFilm = new Movie(Console.ReadLine());
+      if (AllMovies.Contains(inputFilm))
+      {
+        selectedFilm = AllMovies[AllMovies.IndexOf(inputFilm)];
+      }
+      else
+      {
+        selectedFilm = inputFilm;
+        AllMovies.Add(selectedFilm);
+      }
+      Console.WriteLine("What is {0}'s rating?", selectedFilm.Name);
+      selectedFilm.RateMovie(Console.ReadLine());
+      Menu();
+    }
+
     private static void Menu()
     {
       Console.ForegroundColor = ConsoleColor.Magenta;
@@ -47,7 +67,8 @@ namespace ObjectsDemo
       
       Please choose from the following options:
       1 - View Your Movies
-      2 - Add A New Movie");
+      2 - Add A New Movie
+      3 - Rate A Movie You've Seen");
       Console.ResetColor();
       int choice = int.Parse(Console.ReadLine());
       switch (choice)
@@ -57,6 +78,9 @@ namespace ObjectsDemo
           break;
         case 2:
           AddMovie();
+          break;
+        case 3:
+          RateMovie();
           break;
         default:
           Console.ForegroundColor = ConsoleColor.Red;
@@ -70,7 +94,9 @@ namespace ObjectsDemo
     {
       Console.ForegroundColor = ConsoleColor.Magenta;
       Console.WriteLine(@"------Welcome to the MOVIE LIST!-----");
+      Thread.Sleep(1000);
       ShowPic();
+      Thread.Sleep(1000);
       Menu();
       // Console.WriteLine("Rate your new movie! 1 -5");
       // newMovie.RateMovie(Console.ReadLine());
@@ -80,7 +106,7 @@ namespace ObjectsDemo
     }
     private static void ShowPic()
     {
-      Console.ResetColor();
+      Console.ForegroundColor = ConsoleColor.DarkCyan;
       Console.WriteLine(@"WNXNXXWNXNNNNXXWNXNNXX0dc'.       ..;ldkKWNXNNXNNNNNXNNXNNXNNXNNNNNXNNXNNNN
 NNNNNNNNNNNNNNNNNNKOo;..               .,lkKXNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 NNNNNNNNNNNNNXNN0o,.      ,ldkkxxo;.       'lOXNNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -108,6 +134,7 @@ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNXNNNNNNNXNNNNNNNNNNNNNNNNNO;.cKNNNNNNNNNNNNNNN
 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXNNNXNNNNNNNNNNNNNNNNNNXk,.;xKNNNNNNNNNNNNN
 NNNNNNNNNNXNNNNNNNNNNNNNNNNNNNNNXNNNNNNNNNNNNNNNNNNNXNNNN0o'.':d0NNNNNNNNNN
 XNNXNNXNNXNNXNNXNNXNNXNNXXNNXNNXNNNNNXXNNXNNNNNXNNXNWNXNXNNOl' .dXXNNXNNXNN");
+      Console.ResetColor();
     }
   }
 

@@ -23,9 +23,17 @@ namespace ObjectsDemo
 
     public override string ToString()
     {
-      if (Director != "")
+      if (Director != "" && Rating != 0)
+      {
+        return Director + "'s " + Name + ": " + Rating + " stars";
+      }
+      else if (Director != "")
       {
         return Director + "'s " + Name;
+      }
+      else if (Rating != 0)
+      {
+        return Name + ": " + Rating + " stars";
       }
       else
       {
