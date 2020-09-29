@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace objects_demo
+namespace ObjectsDemo
 {
   class Movie
   {
     public string Name { get; set; }
     public string Director { get; set; }
-    public string Genre { get; set; }
+    public string Genre { get; private set; }
     public bool Seen { get; set; }
     public int Rating { get; set; }
     private static List<Movie> Favorites = new List<Movie> { };
@@ -42,7 +42,22 @@ namespace objects_demo
       {
         Favorites.Add(this);
       }
-      Console.WriteLine("{0} has a rating of {1}", this.Name, this.Rating);
+      Console.WriteLine("{0} has a rating of {1}", Name, Rating);
+    }
+
+    public void SetGenre(string movieType)
+    {
+      string typeNoSpaces = movieType.Trim();
+      var genreList = new List<string> { "drama", "comedy", "scifi", "fantasy", "romance", "romcom" };
+      if (genreList.Contains(typeNoSpaces))
+      {
+        Genre = typeNoSpaces;
+        Console.WriteLine("{0} is a {1}", Name, Genre);
+      }
+      else
+      {
+        Console.WriteLine("??? Unknown genre");
+      }
     }
   }
 }

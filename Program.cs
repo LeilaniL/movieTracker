@@ -1,28 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace objects_demo
+namespace ObjectsDemo
 {
   class Program
   {
-    static void Main(string[] args)
+    static List<Movie> AllMovies = new List<Movie> { };
+    private static void AddMovie()
     {
-      Console.WriteLine("Hello World!");
-      Movie defaultMovie = new Movie("Star Wars");
-      List<Movie> allMovies = new List<Movie> { defaultMovie };
+      Console.ForegroundColor = ConsoleColor.Cyan;
       Console.WriteLine("What is a movie you want to see?");
-      string inputFave = Console.ReadLine();
-      var newMovie = new Movie(inputFave);
-      newMovie.Director = "James Cameron";
-      allMovies.Add(newMovie);
-      Console.WriteLine("Your Watch List:");
-      foreach (Movie movie in allMovies)
+      Movie newMovie = new Movie(Console.ReadLine());
+      Console.WriteLine("Do you know who directed it? (Y or N)");
+      string knowsDirector = Console.ReadLine().ToUpper();
+      if (knowsDirector == "Y" | knowsDirector == "YES")
       {
-        Console.WriteLine(movie);
+        Console.WriteLine("Good for you!");
+        Program.Menu();
+      }
+      else
+      {
+        Console.WriteLine("No worries. You can always add it later.");
       }
       Console.ResetColor();
-      Console.WriteLine("Rate your new movie! 1 -5");
-      newMovie.RateMovie(Console.ReadLine());
+      AllMovies.Add(newMovie);
+    }
+    void RateMovie(string inputRating)
+    {
+
+    }
+    private static void ViewList()
+    {
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.WriteLine("You have {0} movies in your watch list.", AllMovies.Count);
+      foreach (Movie film in AllMovies)
+      {
+        Console.WriteLine(film);
+      }
+      Program.Menu();
+    }
+    private static void Menu()
+    {
+      Console.ForegroundColor = ConsoleColor.Magenta;
+      Console.WriteLine(@"**********MENU***********
+      
+      Please choose from the following options:
+      1 - View Your Movies
+      2 - Add A New Movie");
+      Console.ResetColor();
+      int choice = int.Parse(Console.ReadLine());
+      switch (choice)
+      {
+        case 1:
+          ViewList();
+          break;
+        case 2:
+          AddMovie();
+          break;
+        default:
+          Console.ForegroundColor = ConsoleColor.Red;
+          Console.WriteLine("Unrecognized choice. Hit Ctrl + C to exit the program.");
+          Console.ResetColor();
+          Main();
+          break;
+      }
+    }
+    static void Main()
+    {
+      Console.ForegroundColor = ConsoleColor.Magenta;
+      Console.WriteLine(@"------Welcome to the MOVIE LIST!-----");
+
+      Program.Menu();
+      // Console.WriteLine("Rate your new movie! 1 -5");
+      // newMovie.RateMovie(Console.ReadLine());
+      // //newMovie.Genre = "test";
+      // Console.WriteLine("What genre is your movie?");
+      // newMovie.SetGenre(Console.ReadLine());
     }
   }
 }
