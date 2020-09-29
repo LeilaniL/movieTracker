@@ -11,12 +11,12 @@ namespace ObjectsDemo
       Console.ForegroundColor = ConsoleColor.Cyan;
       Console.WriteLine("What is a movie you want to see?");
       Movie newMovie = new Movie(Console.ReadLine());
+      Console.WriteLine(newMovie);
       Console.WriteLine("Do you know who directed it? (Y or N)");
       string knowsDirector = Console.ReadLine().ToUpper();
       if (knowsDirector == "Y" | knowsDirector == "YES")
       {
         Console.WriteLine("Good for you!");
-        Program.Menu();
       }
       else
       {
@@ -24,6 +24,7 @@ namespace ObjectsDemo
       }
       Console.ResetColor();
       AllMovies.Add(newMovie);
+      Program.Menu();
     }
     void RateMovie(string inputRating)
     {
