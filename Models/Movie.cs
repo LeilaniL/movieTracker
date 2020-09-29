@@ -23,7 +23,6 @@ namespace ObjectsDemo
 
     public override string ToString()
     {
-      Console.ForegroundColor = ConsoleColor.DarkMagenta;
       if (Director != "")
       {
         return Director + "'s " + Name;
