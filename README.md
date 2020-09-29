@@ -1,9 +1,9 @@
 # Movie Tracker
-### _A console program to track movies you want to see and ones you have seen_
+### _A simple console program to track movies you want to see and ones you have seen. Built to give students an example of working with classes._
 
 ## Setup Instructions
 - Clone this project
-- Navigate to the "movieTracker" folder in your terminal
+- Navigate to the project folder ("movieTracker" by default) in your terminal
 - Run the program in your terminal with `dotnet run` (this command also installs dependencies and builds the project)
 - Exit the program at any time by pressing `Ctrl + C` on Windows (`Cmd + C` on Mac)
 
@@ -17,4 +17,6 @@
 - Users should see an indication of which movies they've seen already
 
 ## License
-MIT License
+Copyright (c) 2020 Leilani Leach
+
+This software is licensed under the MIT License
