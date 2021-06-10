@@ -6,7 +6,7 @@ namespace ObjectsDemo
 {
   class Program
   {
-    static List<Movie> AllMovies = new List<Movie> { };
+    static List<Movie> AllMovies = Movie.getDefaultList();
     private static void AddMovie()
     {
       Console.ForegroundColor = ConsoleColor.Cyan;
@@ -46,6 +46,7 @@ namespace ObjectsDemo
       Console.ForegroundColor = ConsoleColor.DarkYellow;
       Console.WriteLine("What movie are you rating?");
       Movie inputFilm = new Movie(Console.ReadLine());
+      // TODO add util to capitalize movie name
       if (AllMovies.Contains(inputFilm))
       {
         selectedFilm = AllMovies[AllMovies.IndexOf(inputFilm)];
@@ -115,11 +116,6 @@ namespace ObjectsDemo
       ShowPic();
       Thread.Sleep(1000);
       Menu();
-      // Console.WriteLine("Rate your new movie! 1 -5");
-      // newMovie.RateMovie(Console.ReadLine());
-      // //newMovie.Genre = "test";
-      // Console.WriteLine("What genre is your movie?");
-      // newMovie.SetGenre(Console.ReadLine());
     }
     private static void ShowPic()
     {

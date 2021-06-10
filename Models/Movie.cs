@@ -12,11 +12,11 @@ namespace ObjectsDemo
     private int Rating;
     private static List<Movie> Favorites = new List<Movie> { };
 
-    public Movie(string movieName)
+    public Movie(string movieName, string director = "", string genre = "")
     {
       Name = movieName;
-      Director = "";
-      Genre = "Drama";
+      Director = director;
+      Genre = genre;
       Seen = false;
       Rating = 0;
     }
@@ -39,6 +39,15 @@ namespace ObjectsDemo
       {
         return Name;
       }
+    }
+
+    public static List<Movie> getDefaultList()
+    {
+      Movie lotr = new Movie("The Lord of the Rings: Fellowshp of the Ring", "Peter Jackson", "fantasy");
+      Movie parasite = new Movie("Parasite", "Bong Joon-Ho", "drama");
+      Movie nomadland = new Movie("Nomadland", "Chloe Zhao", "drama");
+      Movie montyPython = new Movie("Monty Python and the Holy Grail", "Terry Gilliams", "comedy");
+      return new List<Movie> { lotr, parasite, nomadland, montyPython };
     }
 
     public void RateMovie(string rating)
