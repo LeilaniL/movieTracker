@@ -56,7 +56,15 @@ namespace ObjectsDemo
         AllMovies.Add(selectedFilm);
       }
       Console.WriteLine("What is {0}'s rating?", selectedFilm.Name);
-      selectedFilm.RateMovie(Console.ReadLine());
+      try
+      {
+        selectedFilm.RateMovie(Console.ReadLine());
+      }
+      catch
+      {
+        Console.WriteLine("There was an error. Please try again.");
+        Main();
+      }
       Menu();
     }
 
@@ -70,7 +78,16 @@ namespace ObjectsDemo
       2 - Add A New Movie
       3 - Rate A Movie You've Seen");
       Console.ResetColor();
-      int choice = int.Parse(Console.ReadLine());
+      int choice = 0;
+      try
+      {
+        choice = int.Parse(Console.ReadLine());
+      }
+      catch (System.Exception)
+      {
+        Console.WriteLine("There was an error. Please try again.");
+        Main();
+      };
       switch (choice)
       {
         case 1:

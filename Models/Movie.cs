@@ -9,7 +9,7 @@ namespace ObjectsDemo
     public string Director { get; set; }
     public string Genre { get; private set; }
     public bool Seen { get; set; }
-    public int Rating { get; set; }
+    private int Rating;
     private static List<Movie> Favorites = new List<Movie> { };
 
     public Movie(string movieName)
@@ -43,8 +43,16 @@ namespace ObjectsDemo
 
     public void RateMovie(string rating)
     {
-      Rating = int.Parse(rating);
       Seen = true;
+      try
+      {
+        Rating = int.Parse(rating);
+      }
+      catch (System.Exception)
+      {
+        Console.WriteLine("There was an error. Please try again.");
+        throw;
+      }
       if (Rating >= 4)
       {
         Favorites.Add(this);
